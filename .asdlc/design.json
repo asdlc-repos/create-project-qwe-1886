@@ -1,0 +1,24 @@
+{
+  "overview": "A minimal single-page web application that serves a static 'Hello World' greeting to visitors. The architecture consists of a single frontend component built with React and TypeScript that renders the greeting message client-side. No backend services are required as the application has no dynamic data or API requirements.",
+  "requirements": [
+    "The application must display 'Hello World' as the main content when accessed",
+    "The page must load and display the greeting immediately without user interaction",
+    "The application must be responsive and work on both desktop and mobile browsers",
+    "The page must display the same message consistently across page refreshes",
+    "The application must include a health check endpoint for monitoring"
+  ],
+  "components": [
+    {
+      "name": "hello-world-web",
+      "componentType": "web-app",
+      "language": "TypeScript / React",
+      "dependsOn": [],
+      "entrypoint": "deployment/web-application",
+      "buildpack": "docker",
+      "appPath": "/hello-world-web",
+      "openAPISpec": "openapi: 3.0.3\ninfo:\n  title: Hello World Web Application\n  version: 1.0.0\n  description: A simple web application that displays Hello World\npaths:\n  /health:\n    get:\n      summary: Health check endpoint\n      description: Returns the health status of the web application\n      operationId: getHealth\n      responses:\n        '200':\n          description: Application is healthy\n          content:\n            application/json:\n              schema:\n                type: object\n                properties:\n                  status:\n                    type: string\n                    example: ok\n                  timestamp:\n                    type: string\n                    format: date-time\n                    example: '2024-01-15T10:30:00Z'",
+      "componentAgentInstructions": "Implement a single-page React application using TypeScript that displays 'Hello World' to visitors. Technical requirements: Use React 18+ with TypeScript, Create React App or Vite as the build tool. The application should render a single component that displays 'Hello World' as the primary text content, centered on the page with basic styling. Implement responsive CSS to ensure the page works on mobile and desktop browsers (use CSS media queries or a responsive framework like Tailwind CSS). The application must serve on port 3000 during development. For production, build static assets and serve them using a lightweight web server like nginx or serve. Include a /health endpoint that returns JSON with status 'ok' and current timestamp - this can be implemented as a simple Express server alongside the static files or as a separate health check route. The Dockerfile should use a multi-stage build: stage 1 builds the React app (npm run build), stage 2 serves the built static files using nginx or node with express/serve. Ensure the container exposes port 8080 for the web server. The application should have no external dependencies or API calls. Include a README with setup instructions, npm install and npm start commands. Add basic error boundaries in React to handle any runtime errors gracefully. Ensure the page title is set to 'Hello World'. The greeting should be visible immediately on page load without any loading states or delays. Test that the page refreshes correctly and maintains the same content."
+    }
+  ],
+  "sourceSpec": "spec-v1"
+}
