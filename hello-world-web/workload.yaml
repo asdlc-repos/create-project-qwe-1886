@@ -1,0 +1,11 @@
+apiVersion: openchoreo.dev/v1alpha1
+metadata:
+  name: hello-world-web
+
+endpoints:
+  - name: http
+    type: HTTP
+    port: 8080
+    basePath: /
+    visibility:
+      - external
